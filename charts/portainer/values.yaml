@@ -25,6 +25,17 @@ serviceAccount:
   annotations: {}
   name: portainer-sa-clusteradmin
 
+podSecurityContext: {}
+  # fsGroup: 2000
+
+securityContext: {}
+  # capabilities:
+  #   drop:
+  #   - ALL
+  # readOnlyRootFilesystem: true
+  # runAsNonRoot: true
+  # runAsUser: 1000
+
 service:
   # Set the httpNodePort and edgeNodePort only if the type is NodePort
   # For Ingress, set the type to be ClusterIP and set ingress.enabled to true

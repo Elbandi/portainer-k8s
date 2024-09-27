@@ -35,6 +35,10 @@ spec:
         {{- toYaml . | nindent 8 }}
       {{- end }}
       serviceAccountName: {{ include "portainer.serviceAccountName" . }}
+      {{- with .Values.podSecurityContext }}
+      securityContext:
+        {{- toYaml . | nindent 8 }}
+      {{- end }}
       volumes:
         {{- if .Values.persistence.enabled }}
         - name: "data"
@@ -53,6 +57,10 @@ spec:
         {{- end }}
       containers:
         - name: {{ .Chart.Name }}
+          {{- with .Values.securityContext }}
+          securityContext:
+            {{- toYaml . | nindent 12 }}
+          {{- end }}
           {{- if .Values.enterpriseEdition.enabled }}
           image: "{{ .Values.enterpriseEdition.image.repository }}:{{ .Values.enterpriseEdition.image.tag }}"
           imagePullPolicy: {{ .Values.enterpriseEdition.image.pullPolicy }}
