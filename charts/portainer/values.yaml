@@ -80,6 +80,12 @@ ingress:
 
 resources: {}
 
+nodeSelector: {}
+
+tolerations: []
+
+affinity: {}
+
 persistence:
   enabled: true
   size: "10Gi"
