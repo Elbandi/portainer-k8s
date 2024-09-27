@@ -6,6 +6,10 @@ metadata:
   labels:
     io.portainer.kubernetes.application.stack: portainer
     {{- include "portainer.labels" . | nindent 4 }}
+  {{- with .Values.deploymentAnnotations }}
+  annotations:
+    {{- toYaml . | nindent 4 }}
+  {{- end }}
 spec:
   replicas: {{ .Values.replicaCount }}
   strategy:
@@ -15,8 +19,15 @@ spec:
       {{- include "portainer.selectorLabels" . | nindent 6 }}
   template:
     metadata:
+      {{- with .Values.podAnnotations }}
+      annotations:
+        {{- toYaml . | nindent 8 }}
+      {{- end }}
       labels:
         {{- include "portainer.selectorLabels" . | nindent 8 }}
+        {{- with .Values.podLabels }}
+          {{- toYaml . | nindent 8 }}
+        {{- end }}
     spec:
       nodeSelector: {{- toYaml .Values.nodeSelector | nindent 8 -}}
       {{- with .Values.imagePullSecrets }}
