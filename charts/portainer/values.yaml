@@ -9,12 +9,12 @@ enterpriseEdition:
   enabled: false
   image:
     repository: portainer/portainer-ee
-    tag: 2.21.2
+    tag: 2.21.4
     pullPolicy: Always
 
 image:
   repository: portainer/portainer-ce
-  tag: 2.21.2
+  tag: 2.21.4
   pullPolicy: Always
 
 imagePullSecrets: []
@@ -24,6 +24,10 @@ nodeSelector: {}
 serviceAccount:
   annotations: {}
   name: portainer-sa-clusteradmin
+
+# This flag provides the ability to enable or disable RBAC-related resources during the deployment of the Portainer application
+# If you are using Portainer to manage the K8s cluster it is deployed to, this flag must be set to true 
+localMgmt: true
 
 podSecurityContext: {}
   # fsGroup: 2000
