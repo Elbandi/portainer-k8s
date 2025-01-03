@@ -9,17 +9,18 @@ enterpriseEdition:
   enabled: false
   image:
     repository: portainer/portainer-ee
-    tag: 2.21.4
+    tag: 2.21.5
     pullPolicy: Always
 
 image:
   repository: portainer/portainer-ce
-  tag: 2.21.4
+  tag: 2.21.5
   pullPolicy: Always
 
 imagePullSecrets: []
 
 nodeSelector: {}
+tolerations: []
 
 serviceAccount:
   annotations: {}
